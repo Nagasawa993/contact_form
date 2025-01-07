@@ -7,14 +7,29 @@ function App() {
   const [email, setEmail] = useState('')
   const [other, setOther] = useState('')
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
     if (name !== '' & age !== '' & email !== ''){
-      alert(`${name}さんからのお問合せです。年齢は${age}歳、Emailは${email}、その他${other}`)
+      alert(`${name}さんからのお問合せです。年齢は${age}歳、Emailは${email}、その他${other}`);
+      setName('');
+      setAge('');
+      setEmail('');
+      setOther('');
     }else{
-      alert('必須項目が未入力です')
+      alert('必須項目が未入力です');
     }
+  }
+  const handleName = (e) => {
+    setName(e.target.value.trim())
+  }
+  const handleAge =(e) => {
+    setAge(e.target.value)
+  }
+  const handleEmail =(e) => {
+    setEmail(e.target.value)
+  }
+  const handleOther =(e) => {
+    setOther(e.target.value)
   }
 
   return (
@@ -32,7 +47,8 @@ function App() {
           type="text"
           id="name"
           name="customer_name"
-          onChange={(e) => setName(e.target.value)}
+          value={name}
+          onChange={handleName}
         />
         <label style={{ display: 'block' }} htmlFor="age">
           年齢 ※必須
@@ -42,7 +58,8 @@ function App() {
           type="number"
           id="age"
           name="customer_age"
-          onChange={(e) => setAge(e.target.value)}
+          value={age}
+          onChange={handleAge}
         />
         <label style={{ display: 'block' }} htmlFor="email">
           メールアドレス ※必須
@@ -52,7 +69,8 @@ function App() {
           type="email"
           id="email"
           name="customer_email"
-          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          onChange={handleEmail}
         />
         <label style={{ display: 'block' }} htmlFor='other'>
           その他
@@ -62,7 +80,8 @@ function App() {
           type="text"
           id="other"
           name="customer_other"
-          onChange={(e) => setOther(e.target.value)}
+          value={other}
+          onChange={handleOther}
         />
         </div>
           <button  style={{ width: '100px' }} type="submit">
